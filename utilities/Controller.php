@@ -2,7 +2,7 @@
 abstract class Controller{
         protected static $db;
         public function __construct() {
-                $db = new Database();
+                self::$db = new Database();
         }
         //these are for static views, the web pages
         protected function loadView($view) {
