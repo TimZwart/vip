@@ -2,7 +2,7 @@
 class Database{
         protected static $db;
         public function __construct(){
-                self::$db = new mysqli("localhost", "root", "tyranids", "vip_assessment");
+                self::$db = new pdo("localhost", "root", "tyranids", "vip_assessment");
                 if (self::$db->connect_error) {
                     die('Connect Error (' . self::$db->connect_errno . ') ' . self::$db->connect_error);
                 }
@@ -12,7 +12,7 @@ class Database{
                 if(!$stmt) { 
                         die("prepping a statement failed error: ".self::$db->error);
                 }
-                $stmt->bind_params($params);
+                $stmt->bind($params);
                 $stmt->execute();
                 $res = $stmt->get-results();
                 $return = [];
