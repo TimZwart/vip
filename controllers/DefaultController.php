@@ -9,8 +9,11 @@ class DefaultController extends Controller{
                 $this->loadAPIView("posts", $posts);
         }
         public function page_info(){
-                $pageinfo = [ "title" => "hoi",
-                                "heading" => "hallo" ];
+                $pageinfo = [   "title" => "hoi",
+                                "heading" => "hallo",
+                                "blog_description" => "dit is een weblog",
+                                "nav" => ["menus" => ["menu1" => ["fadda" => "http://fadda.com"]]]
+                ];
                 $this->loadAPIView("pageinfo", $pageinfo);
         }
 }

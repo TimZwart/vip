@@ -2,9 +2,11 @@
 class Database{
         protected static $db;
         public function __construct(){
-                self::$db = new pdo("localhost", "root", "tyranids", "vip_assessment");
-                if (self::$db->connect_error) {
-                    die('Connect Error (' . self::$db->connect_errno . ') ' . self::$db->connect_error);
+                try{
+                        self::$db = new pdo("mysql:dbname=vip_assessment;host=127.0.0.1", "root", "tyranids");
+                }
+                catch(PDOException $e){
+                    die('Connect Error  '. $e->getMessage());
                 }
         }
         public function query($query, $params = []){
@@ -12,14 +14,14 @@ class Database{
                 if(!$stmt) { 
                         die("prepping a statement failed error: ".self::$db->error);
                 }
-                $stmt->bind($params);
-                $stmt->execute();
-                $res = $stmt->get-results();
+//                $stmt->bind($params);
+                $stmt->execute($params);
+//                $res = $stmt->get_results();
                 $return = [];
-                while($row = $res->fetch_assoc()) {
+                while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         $return[] = $row;
                 }
-                return $row;
+                return $return;
         }
 
 }

@@ -30,7 +30,11 @@ if(count($parts)>0&&$parts[0]!="") {
 	$controller_name = $parts[0];
         //if its just a static asset we need to serve, just serve it with no frills
         if($parts[0] == "assets") {
-                echo file_get_contents(BASE_PATH.$uri);
+                $path = BASE_PATH.$uri;
+                $mime = Mimer::mime($path);
+                header("Content-type: $mime");
+//                echo "$path: $mime";
+                echo file_get_contents($path);
                 die;
         }
 }
