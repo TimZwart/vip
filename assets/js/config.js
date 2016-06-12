@@ -1,1 +1,1 @@
-var uri_root="/vip_assessment"
+var uri_root="/vip"

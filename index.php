@@ -3,8 +3,8 @@
 
 
 //echo "index.php\n";
-define("BASE_PATH",'/var/www/html/vip_assessment/');
-define("BASE_URI", '/vip_assessment');
+define("BASE_PATH",'/var/www/html/vip/');
+define("BASE_URI", '/vip');
 function page_not_found(){
 	echo "404\n";
 }
