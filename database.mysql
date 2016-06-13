@@ -1,7 +1,7 @@
-CREATE DATABASE vip_assessment;
+CREATE DATABASE IF NOT EXISTS vip_assessment;
 use vip_assessment;
-create table posts(
-  id INT not null auto increment,
+create table if not exists posts(
+  id INT not null auto_increment primary key,
   title varchar(100) not null,
   content text not null,
   post_date date not null);
