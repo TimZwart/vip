@@ -5,4 +5,8 @@ create table if not exists posts(
   title varchar(100) not null,
   content text not null,
   post_date date not null);
-insert into posts (title, content, post_date) values("yo", "boom suprise wie is er op de buis man, het is def rhymz en geen henny huisman", '2016-06-11');
+create table if not exists comments(
+	id INT not null auto_increment primary key,
+	post_id int not null,
+	title varchar(100) not null,
+	content text not null);

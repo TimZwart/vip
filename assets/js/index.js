@@ -24,7 +24,7 @@ var process_page_infos= function(resp){
 $.get(uri_root+"/"+controller+"/page_info", process_page_infos);
 post_to_html = function(post) {
         return '<div class="post" data-id="'+post.id+'><div class="row" "><h2 class="blog_post_title">'+post.title+'</h2>'+post.content+'</div>'+
-		'<div class="row"><button class="btn btn-default comments_show">show comments</button><div class="comment_section"><ul class="comments"></ul><form class="comment_form"><input type="text" name="comment_subject"><input name="comment_content" type="text"><input type="submit" value="post comment"></form></div></div></div>';
+		'<div class="row"><button class="btn btn-default comments_show">show comments</button><div class="comment_section"><ul class="comments"></ul></div><form class="comment_form"><input type="text" name="comment_subject"><input name="comment_content" type="text"><input type="submit" value="post comment"></form></div></div>';
 };
 var process_posts = function(resp){
         var posts = JSON.parse(resp);
@@ -55,14 +55,15 @@ var show_comments = function(e) {
 }
 $("ul.posts").on("click", ".comments_show", show_comments);
 var submit_comment = function(e){
+	$(this).css("background-color", "#FFDDDD");
 	e.preventDefault();
 	var data = $(this).serializeArray();
 	var div_post = $(this).parents('div.post');
-	var postid = div_post.data('id');
+	var post_id = div_post.data('id');
 	data[data.length] =  { name: "post_id", value: post_id };
 	var renewcomments = function() {
 		comments_to_html(div_post);
 	};
 	$.post(uri_root+"/"+controller+"/post_comment", data, renewcomments);
 };
-$("ul.posts").on("submit", "comment_form", submit_comment);
+$("ul.posts").on("submit", ".comment_form", submit_comment);
